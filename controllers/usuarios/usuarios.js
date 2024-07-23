@@ -1,18 +1,18 @@
 
-const getUsuario= () => {
-   return  'getUsuario';
+const getUsuario= (req, res) => {
+   return res.json({messange: 'Hola'})
 }
 
-const postUsuario= () => {
-    return 'postUsuario';
+const postUsuario= (req, res) => {
+    return res.json({messange: 'Hola'})
 }
 
-const deleteUsuario= () => {
-    return 'deleteUsuario';
+const deleteUsuario= (req, res) => {
+    return res.json({messange: 'Hola'})
 }
 
-const updateUsuario= () => {
-    return 'updateUsuario';
+const updateUsuario= (req, res) => {
+    return res.json({messange: 'Hola'})
 }
 
 // el module.exports es para exportar las funciones
