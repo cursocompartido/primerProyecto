@@ -9,6 +9,24 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model usuario {
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(30)
+  email    String   @unique @db.VarChar(50)
+  password String   @db.VarChar(100)
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model cliente {
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(30)
+  email    String   @unique @db.VarChar(50)
+  password String   @db.VarChar(100)
+  createAt DateTime @default(now()) // para saber cuando fue creado el cliente (fecha)
+  updateAt DateTime @updatedAt // actualiza (fecha)
 }

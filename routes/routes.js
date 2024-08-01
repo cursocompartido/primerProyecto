@@ -1,12 +1,17 @@
 const { Router: eRouter } = require('express');
 const router = eRouter();
 
-const usuariosRouter = require('../controllers/usuarios/routes');
+//TODO: Agregar nuevas routes para propiedades y roles
+//TODO: Recordar para que sirve este archivo (routes.js)
 
+const usuariosRouter = require('../controllers/usuarios/routes');
+const clienteRouter = require('../controllers/cliente/routes');
+
+
+router.use(clienteRouter);
 router.use(usuariosRouter);
 
-const clienteRouter = require('../controllers/cliente/routes')
-router.use(clienteRouter)
+
 
 module.exports = router;
 
