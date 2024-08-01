@@ -1,3 +1,9 @@
+//TODO: Investigar un ORM
+//TODO: Instalación de Prisma
+//TODO: Generar SQL atraves de Prisma
+//TODO: Cambiar las consultas SQL por funciones de prisma para base de datos
+//TODO: Agregar a cada función las consultas correspondientes, ejemplo: Select, Update, Delete
+//TODO: Crear las carpeta: propiedades y rolers
 const crearCliente = ( req, res) => {
 
     return res.json({messange: 'crear'})
