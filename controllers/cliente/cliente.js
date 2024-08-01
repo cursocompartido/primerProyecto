@@ -11,29 +11,30 @@
 //TODO: REPASO DE REQ, RES (BODY, HEADER, QUERY PARAMS)
 const crearCliente = (req, res) => {
 
-    return res.json({ messange: 'crear' })
+    return res.json({ message: 'Cliente creado con éxito' })
 
 }
 
 const getCliente = (req, res) => {
-    return res.json({ messange: 'get' })
+    return res.json({ message: 'Obteniendo Clientes' })
 }
 
 const actualizarCliente = (req, res) => {
 
-    console.log(req.params)
-    console.log(req.body)
-    console.log(req.header)
-    return res.json({ messange: 'actualizar' })
+    console.log('Parámetros de la ruta:', req.params) // Muestra los parámetros de la ruta
+    console.log( 'Cuerpo de la solicitud', req.body) // Muestra el cuerpo de la solicitud
+    console.log('Headers de la solicitud',req.headers) // Muestra los headers de la solicitud
+    
+    return res.json({ message: 'Cliente Actualizado con éxito' })
 }
 
 const eliminarCliente = (req, res) => {
-    return res.json({ messange: 'eliminar' })
+    return res.json({ message: 'Cliente eliminado con éxito' })
 }
 
 const getClientebyId = (req, res) => {
     console.log(req.params)
-    return res.json({ messange: 'get2' })
+    return res.json({ message: 'Obteniendo cliente por ID' })
 }
 
 

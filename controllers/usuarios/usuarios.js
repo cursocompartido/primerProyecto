@@ -17,5 +17,8 @@ const updateUsuario= (req, res) => {
 
 // el module.exports es para exportar las funciones
 module.exports= {
-    getUsuario, postUsuario, deleteUsuario, updateUsuario
+    getUsuario, 
+    postUsuario, 
+    deleteUsuario, 
+    updateUsuario
 }
