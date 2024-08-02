@@ -9,38 +9,124 @@
 //TODO: HACER LO MISMO QUE HICISTE CON CLIENTE PARA MOSTRAR LAS RUTAS Y CONSUMIRLAS POR POSTMAN
 //TODO: VAMOS A PENSAR EL POR QUE DEBEMOS EXTRAER LA LOGICA DESDE ACA A OTRO ARCHIVO
 //TODO: REPASO DE REQ, RES (BODY, HEADER, QUERY PARAMS)
-const crearCliente = (req, res) => {
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient
 
-    return res.json({ message: 'Cliente creado con éxito' })
+const crearCliente = async(req, res) => {
 
-}
+    const body = req.body;
 
-const getCliente = (req, res) => {
-    return res.json({ message: 'Obteniendo Clientes' })
-}
+    //const { name, email, password } = body;
 
-const actualizarCliente = (req, res) => {
+    //console.log({...body});
 
-    console.log('Parámetros de la ruta:', req.params) // Muestra los parámetros de la ruta
-    console.log( 'Cuerpo de la solicitud', req.body) // Muestra el cuerpo de la solicitud
-    console.log('Headers de la solicitud',req.headers) // Muestra los headers de la solicitud
+try {
+
+//INSERT INTO cliente (name,email,password)values("Matias Queirolo","matiasq@gmail.com","123456")
+const newCliente = await prisma.cliente.create({
+    data: {
+        ...body
+    },
+})
+
+return res.json({ message: 'Cliente creado con éxito', newCliente })
     
-    return res.json({ message: 'Cliente Actualizado con éxito' })
+} catch (error) {
+    throw new Error(error);
 }
 
-const eliminarCliente = (req, res) => {
-    return res.json({ message: 'Cliente eliminado con éxito' })
 }
 
-const getClientebyId = (req, res) => {
-    console.log(req.params)
-    return res.json({ message: 'Obteniendo cliente por ID' })
+const getClientes = async(req, res) => {
+
+    const take = +req.query.take;
+    const skip = +req.query.skip;
+
+    console.log({take, skip});
+
+    try {
+
+        //SELECT * FROM cliente
+        const getCliente = await prisma.cliente.findMany();
+
+        return res.json({
+            getCliente
+        });
+        
+    } catch (error) {
+        throw new Error(error);
+    }
+
+}
+
+const actualizarCliente = async(req, res) => {
+
+    const id = +req.params.id;
+    const body = req.body;
+
+    try {
+
+        // UPDATE cliente SET column1 = value1, column2 = value2
+        const updateCliente = await prisma.cliente.update({
+            where:{id},
+            data:{
+                ...body
+            }
+        })
+        
+        return res.json({ message: 'Cliente Actualizado con éxito', updateCliente });
+    } catch (error) {
+       console.log(error)
+    }
+
+   
+}
+
+const eliminarCliente = async(req, res) => {
+
+    const id = +req.params.id;
+
+
+    try {
+        
+        // DELETE * FROM cliente WHERE id = id
+        const deleteClient = await prisma.cliente.delete({
+            where:{id}
+        })
+
+        
+
+    return res.json({ message: 'Cliente eliminado con éxito', deleteClient });
+    } catch (error) {
+        throw new error(error);
+    }
+
+
+}
+
+const getClientebyId = async(req, res) => {
+    const id = +req.params.id;
+
+    try {
+
+        // SELECT * FROM cliente WHERE id = id
+        const getClient = await prisma.cliente.findFirst({
+            where:{id}
+        })
+
+        return res.json({
+            message: 'get Cliente',
+            getClient
+        })
+    } catch (error) {
+        throw new Error(error);
+    }
 }
 
 
 module.exports = {
     crearCliente,
-    getCliente,
+    getClientes,
     actualizarCliente,
     eliminarCliente,
     getClientebyId

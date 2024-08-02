@@ -1,18 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const { crearPropiedad, getPropiedad, actualizarPropiedad, eliminarPropiedad } = require('./propiedades')
+const { crearPropiedad, getPropiedad, actualizarPropiedad, eliminarPropiedad, getPropiedadesById } = require('./propiedades')
 
 
-router.post('/Propiedades', crearPropiedad)
+router.post('/propiedades', crearPropiedad)
 
 
-router.get('/Propiedades', getPropiedad)
+router.get('/propiedades', getPropiedad)
 
-router.put('/Propiedades/:id', actualizarPropiedad)
+router.put('/propiedades/:id', actualizarPropiedad)
 
-router.delete('/Propiedades', eliminarPropiedad)
+router.delete('/propiedades', eliminarPropiedad)
 
-// router.get('/cliente/:id', getClientebyId)
+router.get('/propiedades/:id', getPropiedadesById)
 
 
 module.exports = router;

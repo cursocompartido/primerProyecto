@@ -30,3 +30,10 @@ model cliente {
   createAt DateTime @default(now()) // para saber cuando fue creado el cliente (fecha)
   updateAt DateTime @updatedAt // actualiza (fecha)
 }
+
+model propiedades {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(30)
+  direccion  String   @db.VarChar(100)
+
+}

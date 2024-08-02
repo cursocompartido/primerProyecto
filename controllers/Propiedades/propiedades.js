@@ -22,16 +22,17 @@ const eliminarPropiedad = (req, res) => {
     return res.json({ message: 'Propiedad eliminada con éxito' })
 }
 
-// const getPropiedadId = (req, res) => {
-//     console.log(req.params)
-//     return res.json({ message: 'Obteniendo Propiedad por ID' })
-// }
+const getPropiedadesById = (req, res) => {
+    console.log(req.params)
+    return res.json({ message: 'Obteniendo Propiedad por ID' })
+}
 
 
 module.exports = {
     crearPropiedad,
     getPropiedad,
     actualizarPropiedad,
-    eliminarPropiedad
+    eliminarPropiedad,
+    getPropiedadesById
 
 }
